@@ -30,6 +30,7 @@
     --radius:4px;
     --sidebar-w:300px;
     --explore-btn-color: #000;
+    --price-cta-btn:#64ff4d;
     color-scheme: dark;
   }
 
@@ -47,6 +48,7 @@
     --border-strong:rgba(20,20,25,0.16);
     --shadow:0 20px 50px rgba(20,20,25,0.10);
     --explore-btn-color: #fff;
+    --price-cta-btn:#6a2192;
     color-scheme: light;
   }
 
@@ -344,7 +346,7 @@
   .price-cta{
     display:inline-block;width:100%;padding:13px;border:1px solid var(--accent);
     border-radius:var(--radius);font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-    transition:all .2s ease;color:#fff;
+    transition:all .2s ease;color:var(--price-cta-btn);
   }
   .price-card.popular .price-cta{background:var(--accent);color:#151318;border-color:var(--accent);}
   .price-cta:hover{border-color:var(--accent);color:var(--accent);}
