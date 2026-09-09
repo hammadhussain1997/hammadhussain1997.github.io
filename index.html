@@ -755,20 +755,27 @@
   }, { threshold: 0.4 });
   document.querySelectorAll('.stat .num').forEach(el => counterObserver.observe(el));
 
-  /* ---------------- active dot in floating nav on scroll (vanilla) ---------------- */
-  function updateActiveDot() {
-    let current = trackedSections[0];
-    trackedSections.forEach(sec => {
-      if (sec && sec.getBoundingClientRect().top < window.innerHeight * 0.4) {
-        current = sec;
-      }
-    });
-    navDots.forEach(dot => {
-      dot.classList.toggle('active', current && dot.dataset.target === current.id);
-    });
-  }
-  window.addEventListener('scroll', updateActiveDot, { passive: true });
-  updateActiveDot();
+  /* ---------------- active dot in floating nav on scroll (vanilla - optimized) ---------------- */
+const observerOptions = {
+  root: null,
+  rootMargin: '-20% 0px -60% 0px',
+  threshold: 0
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const activeId = entry.target.id;
+      navDots.forEach(dot => {
+        dot.classList.toggle('active', dot.dataset.target === activeId);
+      });
+    }
+  });
+}, observerOptions);
+
+trackedSections.forEach(sec => {
+  if (sec) observer.observe(sec);
+});
 </script>
 
 </body>
